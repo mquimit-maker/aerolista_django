@@ -1,0 +1,68 @@
+{% extends "reservas/base.html" %}
+{% block titulo %}Vuelos · AeroLista{% endblock %}
+{% block contenido %}
+<div class="row g-4">
+  <!-- CONSULTA DE VUELOS -->
+  <div class="col-lg-8">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white fw-bold">🔎 Consulta de vuelos</div>
+      <div class="card-body">
+        <form method="get" class="row g-2 mb-3">
+          <div class="col-md-4"><input class="form-control" name="origen" placeholder="Origen" value="{{ filtros.origen }}"></div>
+          <div class="col-md-4"><input class="form-control" name="destino" placeholder="Destino" value="{{ filtros.destino }}"></div>
+          <div class="col-md-4"><input class="form-control" type="date" name="fecha" value="{{ filtros.fecha }}"></div>
+          <div class="col-12">
+            <button class="btn btn-primary">Buscar</button>
+            <a class="btn btn-outline-secondary" href="{% url 'inicio' %}">Ver todos</a>
+          </div>
+        </form>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-light">
+              <tr><th>Vuelo</th><th>Ruta</th><th>Fecha</th><th>Hora</th><th style="min-width:150px">Ocupación</th><th></th></tr>
+            </thead>
+            <tbody>
+              {% for f in filas %}
+              <tr>
+                <td><strong>{{ f.vuelo.codigo }}</strong></td>
+                <td>{{ f.vuelo.origen }} → {{ f.vuelo.destino }}</td>
+                <td>{{ f.vuelo.fecha }}</td>
+                <td>{{ f.vuelo.hora }}</td>
+                <td>
+                  <div class="progress" role="progressbar"><div class="progress-bar bg-{{ f.color }}" style="width: {{ f.porcentaje }}%"></div></div>
+                  <small class="text-muted">{{ f.ocupados }}/{{ f.capacidad }} · {{ f.porcentaje }}%</small>
+                </td>
+                <td><a class="btn btn-sm btn-success" href="{% url 'vuelo' f.vuelo.codigo %}">Reservar</a></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="6" class="text-center text-muted py-4">No hay vuelos que coincidan.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGISTRO DE VUELOS -->
+  <div class="col-lg-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white fw-bold">🛫 Registrar vuelo</div>
+      <div class="card-body">
+        <form method="post" action="{% url 'registrar_vuelo' %}">
+          {% csrf_token %}
+          <div class="mb-2"><label class="form-label">Código</label><input class="form-control" name="codigo" placeholder="AV303" required></div>
+          <div class="mb-2"><label class="form-label">Origen</label><input class="form-control" name="origen" required></div>
+          <div class="mb-2"><label class="form-label">Destino</label><input class="form-control" name="destino" required></div>
+          <div class="row g-2 mb-2">
+            <div class="col-7"><label class="form-label">Fecha</label><input class="form-control" type="date" name="fecha" required></div>
+            <div class="col-5"><label class="form-label">Hora</label><input class="form-control" type="time" name="hora" required></div>
+          </div>
+          <div class="mb-3"><label class="form-label">Filas del avión (6 asientos c/u)</label><input class="form-control" type="number" name="filas" min="1" max="30" value="12" required></div>
+          <button class="btn btn-primary w-100">Guardar vuelo</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,2 @@
+<input type="radio" class="btn-check" name="asiento" id="as-{{ a.codigo }}" value="{{ a.codigo }}" autocomplete="off"{% if a.ocupado %} disabled{% endif %}{% if a.mio %} checked{% endif %}>
+<label class="btn seat {% if a.ocupado %}btn-danger{% else %}btn-outline-success{% endif %}{% if a.ejecutiva %} seat-exec{% endif %}" for="as-{{ a.codigo }}" title="{% if a.dueno %}{{ a.dueno.nombre }} (#{{ a.dueno.numero }}){% else %}Libre{% endif %}">{{ a.codigo }}</label>

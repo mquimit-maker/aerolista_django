@@ -1,0 +1,4 @@
+[
+  {"codigo": "AV101", "origen": "Guayaquil", "destino": "Quito", "fecha": "2026-11-30", "hora": "08:30", "filas": 12},
+  {"codigo": "AV202", "origen": "Quito", "destino": "Cuenca", "fecha": "2026-12-02", "hora": "15:45", "filas": 10}
+]

@@ -1,0 +1,14 @@
+{
+  "AV101": {
+    "siguiente": 1008,
+    "pasajeros": [
+      {"numero": 1001, "nombre": "Ana Torres",  "cedula": "0911111111", "edad": 28, "asiento": "1A"},
+      {"numero": 1002, "nombre": "Diana Vera",  "cedula": "0922222222", "edad": 35, "asiento": "3C"},
+      {"numero": 1003, "nombre": "Luis Mora",   "cedula": "0933333333", "edad": 41, "asiento": "7D"},
+      {"numero": 1004, "nombre": "Beto Salas",  "cedula": "0934567890", "edad": 16, "asiento": "7E"},
+      {"numero": 1005, "nombre": "Elena Ruiz",  "cedula": "0955555555", "edad": 52, "asiento": "2F"},
+      {"numero": 1006, "nombre": "Pedro Paz",   "cedula": "0966666666", "edad": 33, "asiento": "1D"},
+      {"numero": 1007, "nombre": "Lucía Cruz",  "cedula": "0977777777", "edad": 24, "asiento": "10B"}
+    ]
+  }
+}
